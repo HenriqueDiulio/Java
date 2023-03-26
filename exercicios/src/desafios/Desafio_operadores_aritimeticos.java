@@ -1,4 +1,4 @@
-package operadores;
+package desafios;
 
 public class Desafio_operadores_aritimeticos {
 

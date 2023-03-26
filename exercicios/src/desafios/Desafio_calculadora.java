@@ -1,4 +1,4 @@
-package operadores;
+package desafios;
 
 import javax.swing.JOptionPane;
 
