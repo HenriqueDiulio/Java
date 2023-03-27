@@ -18,7 +18,7 @@ public class Desafio_data_teste {
 		System.out.println("========== PRIMEIRA DATA =========="
 				+ "\nDigite o dia: ");
 		data1.dia = input.nextInt();// ele vai setar a data na variavel dia da classe data
-		System.out.println("Digite o mes: ");
+		System.out.println("Digite o mes: "); 
 		data1.mes = input.nextInt();
 		System.out.println("Digite o ano: ");
 		data1.ano = input.nextInt();
