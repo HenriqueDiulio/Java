@@ -21,11 +21,11 @@ public class ProdutoTeste {
 		System.out.println("----------- CARRINHO DE COMPRA -----------"
 				+p1.nome + p2.nome);
 
-		double valortotal1 = (p1.preco - p1.desconto);
-		double valortotal2 = (p2.preco - p2.desconto);
+		double valortotal1 = p1.precoComDesconto(p1.preco, p1.desconto);
+		double valortotal2 = p2.precoComDesconto(p2.preco, p2.desconto);
 
 		System.out.println("----------- TOTAL -----------\n"
-				+ "O valor de "+ p1.nome+ " é de: "+valortotal1
+				+ "O valor de "+ p1.nome+ " é de: "+valortotal1 
 				+"\nO valor de "+ p2.nome+ " é de: "+valortotal2);
 	}
 }
