@@ -1,6 +1,9 @@
 /module-info.class
+/.classpath
+/.gitignore
+/.project
+/Classe/
 /controle/
 /desafios/
 /fundamentos/
 /operadores/
-/Classe/
