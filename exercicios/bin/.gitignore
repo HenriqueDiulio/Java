@@ -1,8 +1,11 @@
 /module-info.class
-/controle/
-/desafios/
+/.gitignore
+/.project
 /Classe/
 /arrays/
 /colecoes/
+/controle/
+/desafios/
 /fundamentos/
+/oo/
 /operadores/
