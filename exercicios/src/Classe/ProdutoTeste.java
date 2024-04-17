@@ -1,31 +1,44 @@
 package Classe;
 
+import java.util.Scanner;
+
 public class ProdutoTeste {
 	public static void main(String[] args) {
-		// para intaciar um classe:
-		// Tipo -> Nome -> = new(que e um palavra reeservada para chamar um contrutor)
-		// -> Nome da classe
-		Produto p1 = new Produto();
 
-		// alterando valores das variaveis da instância(classe produto)
-		p1.nome = "Acer Nitro 5";
-		p1.preco = 5000.0;
-		p1.desconto = 0.10;
+		// Instanciando a Classe Produto e passando parametros dentro da instancia, puxando 2 objetos que são RTX 3090 E 3060
+		Produto p1 = new Produto("RTX 3060",2000.0, 0.20);
+		//p1.nome = "RTX 3060";
+		//p1.preco = 2000.0;
+		//p1.desconto = 0.20;
 
-		Produto p2 = new Produto();
+		var p2 = new Produto("RTX 3090 TI", 6000.0, 0.15);
+		//p2.nome = "RTX 3090 TI";
+		//p2.preco = 6000.0;
+		//p2.desconto = 0.15;
 
-		p2.nome = "Caneta";
-		p2.preco = 2.0;
-		p2.desconto = 0.1;
 
-		System.out.println("----------- CARRINHO DE COMPRA -----------"
-				+p1.nome + p2.nome);
 
-		double valortotal1 = p1.precoComDesconto(p1.preco, p1.desconto);
-		double valortotal2 = p2.precoComDesconto(p2.preco, p2.desconto);
 
-		System.out.println("----------- TOTAL -----------\n"
-				+ "O valor de "+ p1.nome+ " é de: "+valortotal1 
-				+"\nO valor de "+ p2.nome+ " é de: "+valortotal2);
+		// Usando método para calcular o valor total do objeto.
+
+		double precoFinal1 = p1.precoComDesconto();
+		double precoFinal2 = p2.precoComDesconto();
+
+
+		System.out.println("\n-----------LOJINHA DO CHINA-----------" +
+				"\n Produto: "+p1.nome+
+				"\n Valor: "+p1.preco+
+				"\n Desconto: "+p1.desconto +"%"+
+				"\n Valor Final: R$"+precoFinal1
+		);
+		System.out.println("\n-----------LOJINHA DO CHINA-----------" +
+				"\n Produto: "+p2.nome+
+				"\n Valor: "+p2.preco+
+				"\n Desconto: "+p2.desconto +"%"+
+				"\n Valor Final: R$"+precoFinal2
+		);
+
+
+
 	}
 }

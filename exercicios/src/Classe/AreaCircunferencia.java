@@ -6,7 +6,7 @@ public class AreaCircunferencia {
 	// modificador de acesso "static" // tipo da variavel "double" // variavel "pi = 3.14"
 	static double pi = 3.14;
 	
-	// esse contrutor vai atribuir um valor a raio
+	// esse construtor vai atribuir um valor a raio
 	public AreaCircunferencia(double raioInicial){
 		raio = raioInicial;
 	}

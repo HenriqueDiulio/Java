@@ -5,13 +5,16 @@ import javax.swing.JOptionPane;
 public class Foreach {
 
 	public static void main(String[] args) {
-		
+
+		//declarando um lista
 		double notas[] = new double[6];
 		
 		for(int i = 0; i < 6; i++) {
-			// Entrada de nota // trim e usado pra remover espaços
-			String entrada1 = JOptionPane.showInputDialog("Digite sua primeira nota: ");
-			entrada1 = entrada1.trim();
+			// Entrada de dados com String.
+			String entrada1 = JOptionPane.showInputDialog("Digite sua nota: ");
+
+			entrada1 = entrada1.trim();// Entrada de nota // trim e usado pra remover espaços
+
 			double notas1= Double.parseDouble(entrada1);// conversão de String para double;
 			
 			// ele vai receber e armazenar as notas
