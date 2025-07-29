@@ -2,7 +2,8 @@ package br.com.cod3r.cm.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
+
+import br.com.cod3r.cm.excecao.ExplosaoException;
 
 public class Tabuleiro {
 	private int colunas;
@@ -10,7 +11,7 @@ public class Tabuleiro {
 	private int linhas;
 
 	private final List<Campo> campos = new ArrayList<>();
- 
+
 	public Tabuleiro(int colunas, int minas, int linhas) {
 		this.colunas = colunas;
 		this.minas = minas;
@@ -22,8 +23,13 @@ public class Tabuleiro {
 	}
 
 	public void abrir(int linha, int coluna) {
-		campos.parallelStream().filter(c -> c.getLinha() == linha && c.getColuna() == coluna).findFirst()
-				.ifPresent(c -> c.abrir());
+		try {
+			campos.parallelStream().filter(c -> c.getLinha() == linha && c.getColuna() == coluna).findFirst()
+					.ifPresent(c -> c.abrir());
+		} catch (ExplosaoException e) {
+			campos.forEach(c -> c.setAberto(true));
+			throw e;
+		}
 	}
 
 	public void alternarMarcacao(int linha, int coluna) {
@@ -40,22 +46,25 @@ public class Tabuleiro {
 	}
 
 	private void associarOsVizinhos() {
-		for (Campo c1 : campos) {
-			for (Campo c2 : campos) {
-				c1.adicionarVizinho(c2);
-			}
-		}
+	    for (Campo campoAtual : this.campos) {
+	        for (Campo vizinhoPotencial : this.campos) {
+	            campoAtual.adicionarVizinho(vizinhoPotencial);
+	        }
+	    }
 	}
 
 	private void sortearMinas() {
-		long minasArmadas = 0;
-		Predicate<Campo> minado = c -> c.isMinado();
-		
-		do {
-			minasArmadas = campos.stream().filter(minado).count();
-			int aleatorio = (int) (Math.random()*campos.size());
-			campos.get(aleatorio).minar();
-		} while (minasArmadas < minas);
+	    long minasArmadas = 0;
+	    
+	    while(minasArmadas < minas) {
+	        int aleatorio = (int) (Math.random() * campos.size());
+	        Campo campoSorteado = campos.get(aleatorio);
+	        
+	        if(!campoSorteado.isMinado()) {
+	            campoSorteado.minar();
+	            minasArmadas++;
+	        }
+	    }
 	}
 
 	public boolean objetivoAlcancado() {
@@ -69,13 +78,23 @@ public class Tabuleiro {
 
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
+		//sb.append > é para formatação das númerações superiores
+		sb.append("  ");
+		for (int c = 0; c < colunas; c++) {
+			sb.append(" ");
+			sb.append(c);
+			sb.append(" ");
+		}
 
+		sb.append("\n");
 		int i = 0;
 		for (int l = 0; l < linhas; l++) {
+			sb.append(l);
+			sb.append(" "); 
 			for (int c = 0; c < colunas; c++) {
-				sb.append("  ");
+				sb.append(" ");
 				sb.append(campos.get(i));
-				sb.append("  ");
+				sb.append(" ");
 				i++;
 			}
 			sb.append("\n");

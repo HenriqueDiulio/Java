@@ -48,7 +48,7 @@ public class Campo {
 	}
 
 	boolean abrir() {
-		if (isAberto() && !marcado) {
+		if (!isAberto() && !marcado) {
 			aberto = true;
 			if (minado) {
 				throw new ExplosaoException();
@@ -71,11 +71,15 @@ public class Campo {
 	}
 
 	public boolean isMinado() {
-		return minado = true;
+	    return this.minado;
 	}
 
 	public boolean isMarcado() {
 		return marcado;
+	}
+
+	void setAberto(boolean aberto) {
+		this.aberto = aberto;
 	}
 
 	public boolean isAberto() {
